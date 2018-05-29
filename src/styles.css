@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
 
-body { margin: 0; }
+body {
+  margin: 0;
+}
 
 .dashboard-card {
   position: absolute;
@@ -32,4 +34,22 @@ body { margin: 0; }
 
 .border-top, .bt {
   border-top: 1px solid rgba(0, 0, 0, .12);
+}
+
+mat-card {
+  padding: 0 !important;
+}
+
+mat-card-header {
+  padding: 24px 24px 0 24px;
+  background-color: #3f51b5;
+  color: white;
+}
+
+mat-card-content {
+  padding: 24px;
+}
+
+mat-card-footer {
+  margin: 0 !important;
 }
