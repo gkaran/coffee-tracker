@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 3" rowHeight="350px">
+    <mat-grid-tile [colspan]='1' [rowspan]='1'>
+      <app-unpaid-coffees class="dashboard-card"></app-unpaid-coffees>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]='1' [rowspan]='1'>
+      <app-monthly-coffees class="dashboard-card"></app-monthly-coffees>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]='1' [rowspan]='1'>
+      <app-average-coffees class="dashboard-card"></app-average-coffees>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]='(isHandset$ | async) ? 1 : 3' [rowspan]='1'>
+      <app-leaderboard class="dashboard-card"></app-leaderboard>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

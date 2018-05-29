@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>☕ Tracker</span>
+  <span class="example-fill-remaining-space"></span>
+
+  <span *ngIf='user'>{{user?.displayName}}</span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)='logout.emit()'>
+      <span>Logout</span>
+    </button>
+    <button mat-menu-item (click)='updateName.emit()'>
+      <span>Update Name</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

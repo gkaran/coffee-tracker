@@ -1,0 +1,15 @@
+.main-content {
+  display: flex;
+}
+
+#portion-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+}
+
+#pay-btn {
+  position: fixed;
+  bottom: 95px;
+  right: 40px;
+}

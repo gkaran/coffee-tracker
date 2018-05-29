@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
+body { margin: 0; }
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  flex: 1 1 100%;
+}
+
+.card-footer {
+  flex: 0 0 50px;
+}
+
+.card-content-text {
+  font-size: 5rem;
+}
+
+.grey-50-bg {
+  background-color: #fafafa !important;
+}
+
+.border-top, .bt {
+  border-top: 1px solid rgba(0, 0, 0, .12);
+}
