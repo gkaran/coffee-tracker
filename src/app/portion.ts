@@ -3,6 +3,5 @@ import Timestamp = firebase.firestore.Timestamp;
 
 export interface Portion {
   date: Timestamp;
-  portions: number;
-  userId: string;
+  amount: number;
 }

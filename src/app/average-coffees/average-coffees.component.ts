@@ -33,8 +33,7 @@ export class AverageCoffeesComponent {
   constructor(afs: AngularFirestore, public afAuth: AngularFireAuth) {
     this.chartData$ = afAuth.authState.pipe(
       filter(user => !!user),
-      mergeMap(user => afs.collection('portions', ref => ref
-        .where('userId', '==', user.uid)
+      mergeMap(user => afs.collection(`users`).doc(user.uid).collection('portions', ref => ref
         .where('date', '>=', startOfMonth(new Date()))
         .where('date', '<=', endOfMonth(new Date()))
       ).valueChanges()),
