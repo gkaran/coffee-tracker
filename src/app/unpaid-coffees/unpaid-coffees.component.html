@@ -6,18 +6,17 @@
   </mat-card-header>
   <mat-card-content class="dashboard-card-content">
     <div class='card-content-text'>
-      <span *ngIf='portions$ | async as portions; else loadingLg'>{{portions}}</span>
+      <span *ngIf='(portions$ | async) != null; else loadingLg'>{{portions$ | async}}</span>
 
     </div>
     <div>PORTIONS</div>
   </mat-card-content>
   <mat-card-footer class='p-15 grey-50-bg border-top card-footer'>
     <div>
-      <span *ngIf='portions$ | async as portions; else loadingSm'>Due: {{portions * portionCost | currency:'EUR'}}</span>
+      <span *ngIf='(portions$ | async) != null; else loadingSm'>Due: {{(portions$ | async) * portionCost | currency:'EUR'}}</span>
     </div>
   </mat-card-footer>
 </mat-card>
-
 
 <ng-template #loadingLg>
   <mat-spinner></mat-spinner>
