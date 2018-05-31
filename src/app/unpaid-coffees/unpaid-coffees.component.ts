@@ -19,7 +19,7 @@ export class UnpaidCoffeesComponent {
     this.portions$ = afAuth.authState.pipe(
       filter(user => !!user),
       mergeMap(user => afs.collection(`users`).doc(user.uid).valueChanges()),
-      map((data: CUser) => data.portions - data.paidPortions)
+      map((data: CUser) => data ? data.totalPortions - data.paidPortions : 0)
     );
   }
 

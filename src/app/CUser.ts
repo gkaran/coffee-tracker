@@ -1,5 +1,4 @@
 export interface CUser {
-  name: string;
-  portions: number;
+  totalPortions: number;
   paidPortions: number;
 }

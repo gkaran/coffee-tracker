@@ -45,7 +45,7 @@ export class AverageCoffeesComponent {
         const d = this.groupBy(mappedData, 'date');
         const orderedData = [];
         for (const date of labels) {
-          orderedData.push(d[date].map(i => i.portions).reduce((a, b) => a + b, 0));
+          orderedData.push(d[date].map(i => i.totalPortions).reduce((a, b) => a + b, 0));
         }
         return {
           data: orderedData,
