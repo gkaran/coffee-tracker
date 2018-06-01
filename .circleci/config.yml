@@ -42,3 +42,14 @@ jobs:
 
       # run tests!
       - run: yarn lint
+
+      - run:
+          name: Run frontend tests
+          command: |
+            npm test --code-coverage
+            ./tmp/cc-test-reports format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
+
+      - run:
+          name: Upload coverage results to Code Climate
+          command: |
+            ./tmp/cc-test-reporter upload-coverate -i tmp/codeclimate.frontend.json
