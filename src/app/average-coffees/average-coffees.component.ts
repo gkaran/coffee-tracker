@@ -38,7 +38,7 @@ export class AverageCoffeesComponent {
         .where('date', '<=', endOfMonth(new Date()))
       ).valueChanges()),
       map((data: Portion[]) => {
-        const mappedData = data.map(d => ({...d, date: format(d.date.toDate(), 'YYYY-MM-DD')}))
+        const mappedData = data.map(dt => ({...dt, date: format(dt.date.toDate(), 'YYYY-MM-DD')}))
           .sort((a, b) => isBefore(parse(a.date), parse(b.date)) ? -1 : 1);
         const labels = Array.from(new Set(mappedData.map(dd => dd.date)));
 
