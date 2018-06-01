@@ -1,8 +1,9 @@
 import {LayoutModule} from '@angular/cdk/layout';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatTableModule, MatToolbarModule
+  MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
+  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -19,6 +20,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {UnpaidCoffeesComponent} from './unpaid-coffees/unpaid-coffees.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import { MonthlyCoffeesComponent } from './monthly-coffees/monthly-coffees.component';
+import { AddCoffeeModalComponent } from './modals/add-coffee-modal/add-coffee-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MonthlyCoffeesComponent } from './monthly-coffees/monthly-coffees.compo
     AverageCoffeesComponent,
     UserDashboardComponent,
     NavbarComponent,
-    MonthlyCoffeesComponent
+    MonthlyCoffeesComponent,
+    AddCoffeeModalComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +50,14 @@ import { MonthlyCoffeesComponent } from './monthly-coffees/monthly-coffees.compo
     MatMenuModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    ChartsModule
+    ChartsModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddCoffeeModalComponent]
 })
 export class AppModule {}

@@ -36,20 +36,21 @@ body {
   border-top: 1px solid rgba(0, 0, 0, .12);
 }
 
-mat-card {
+mat-card, .mat-dialog-container {
   padding: 0 !important;
 }
 
-mat-card-header {
+mat-card-header, .mat-dialog-title {
   padding: 24px 24px 0 24px;
   background-color: #3f51b5;
   color: white;
 }
 
-mat-card-content {
-  padding: 24px;
+mat-card-content, .mat-dialog-content, .mat-dialog-actions {
+  padding: 24px!important;
 }
 
-mat-card-footer {
+mat-card-footer, .mat-dialog-content, .mat-dialog-actions {
   margin: 0 !important;
 }
+

@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Add Coffee</h1>
+<div mat-dialog-content>
+  <mat-slide-toggle [(ngModel)]="data.double">Make it double!!</mat-slide-toggle>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.double" cdkFocusInitial>Add</button>
+</div>

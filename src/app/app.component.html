@@ -4,7 +4,7 @@
 
   <div *ngIf="afAuth.user | async as user; else showLogin">
     <app-user-dashboard></app-user-dashboard>
-    <button mat-fab id='portion-btn' color="primary">
+    <button mat-fab id='portion-btn' color="primary" (click)='openAddCoffeeModal()'>
       <mat-icon aria-label="Example icon-button with a coffee icon">local_cafe</mat-icon>
     </button>
     <button mat-fab id='pay-btn' color="accent">
