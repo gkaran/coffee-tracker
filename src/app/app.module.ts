@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule
+  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -54,12 +54,14 @@ import { UpdateNameModalComponent } from './modals/update-name-modal/update-name
     MatProgressSpinnerModule,
     ChartsModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatSlideToggleModule,
     FormsModule,
     MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddCoffeeModalComponent]
+  entryComponents: [AddCoffeeModalComponent, UpdateNameModalComponent]
 })
 export class AppModule {}
