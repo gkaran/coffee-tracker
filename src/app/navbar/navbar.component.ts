@@ -22,6 +22,13 @@ export class NavbarComponent {
         displayName: this.user.displayName
       }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.user.updateProfile({
+        displayName: result,
+        photoURL: null
+      });
+    });
   }
 
 }
