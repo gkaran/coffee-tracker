@@ -21,6 +21,7 @@ import {UnpaidCoffeesComponent} from './unpaid-coffees/unpaid-coffees.component'
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import { MonthlyCoffeesComponent } from './monthly-coffees/monthly-coffees.component';
 import { AddCoffeeModalComponent } from './modals/add-coffee-modal/add-coffee-modal.component';
+import { UpdateNameModalComponent } from './modals/update-name-modal/update-name-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddCoffeeModalComponent } from './modals/add-coffee-modal/add-coffee-mo
     UserDashboardComponent,
     NavbarComponent,
     MonthlyCoffeesComponent,
-    AddCoffeeModalComponent
+    AddCoffeeModalComponent,
+    UpdateNameModalComponent
   ],
   imports: [
     BrowserModule,
