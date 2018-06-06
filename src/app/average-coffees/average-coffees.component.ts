@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {AngularFirestore} from 'angularfire2/firestore';
 import {endOfMonth, format, isBefore, parse, startOfMonth} from 'date-fns';
 import {Observable} from 'rxjs';
-import {filter, map, mergeMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Portion} from '../portion';
+import {CoffeeService} from '../coffee.service';
 
 @Component({
   selector: 'app-average-coffees',
@@ -30,13 +29,8 @@ export class AverageCoffeesComponent {
 
   public chartData$: Observable<{ data: any[], labels: any[] }>;
 
-  constructor(afs: AngularFirestore, public afAuth: AngularFireAuth) {
-    this.chartData$ = afAuth.authState.pipe(
-      filter(user => !!user),
-      mergeMap(user => afs.collection(`users`).doc(user.uid).collection('portions', ref => ref
-        .where('date', '>=', startOfMonth(new Date()))
-        .where('date', '<=', endOfMonth(new Date()))
-      ).valueChanges()),
+  constructor(private coffeeService: CoffeeService) {
+    this.chartData$ = coffeeService.getUserAverageCoffees(startOfMonth(new Date()), endOfMonth(new Date())).pipe(
       map((data: Portion[]) => {
         const mappedData = data.map(dt => ({...dt, date: format(dt.date.toDate(), 'YYYY-MM-DD')}))
           .sort((a, b) => isBefore(parse(a.date), parse(b.date)) ? -1 : 1);
