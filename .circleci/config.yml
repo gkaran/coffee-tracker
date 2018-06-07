@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Run frontend tests
           command: |
-            npm test --code-coverage --single-run --no-progress
+            npm test -- --code-coverage --single-run --no-progress
             ./tmp/cc-test-reports format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
 
       - run:
