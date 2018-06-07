@@ -1,11 +1,11 @@
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
 import {AuthService} from '../services/auth.service';
 import {asyncData} from '../test-utils';
 
-import { LoginComponent } from './login.component';
+import {LoginComponent} from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -20,14 +20,14 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      providers:[
+      declarations: [LoginComponent],
+      providers: [
         {provide: AuthService, useCLass: AuthServiceMock},
         {provide: Router, useValue: routerSpy}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

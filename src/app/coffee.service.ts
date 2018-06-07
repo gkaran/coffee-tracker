@@ -42,6 +42,6 @@ export class CoffeeService {
       filter(user => !!user),
       mergeMap(user => this.afs.collection(`users`).doc(user.uid).valueChanges()),
       map((data: CUser) => data ? data.totalPortions - data.paidPortions : 0)
-    )
+    );
   }
 }
