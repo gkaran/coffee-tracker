@@ -1,4 +1,6 @@
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {MAT_DIALOG_DATA} from '@angular/material';
 
 import { AddCoffeeModalComponent } from './add-coffee-modal.component';
 
@@ -8,7 +10,11 @@ describe('AddCoffeeModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddCoffeeModalComponent ]
+      declarations: [ AddCoffeeModalComponent ],
+      providers: [
+        {provide: MAT_DIALOG_DATA, useValue: {}}
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

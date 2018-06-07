@@ -1,11 +1,9 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {AddCoffeeBtnComponent} from './add-coffee-btn/add-coffee-btn.component';
-import {PayCoffeeBtnComponent} from './pay-coffee-btn/pay-coffee-btn.component';
-import {Router} from '@angular/router';
-import {AuthService} from './services/auth.service';
 import {Component} from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
+import {Router} from '@angular/router';
+import {AppComponent} from './app.component';
+import {AuthService} from './services/auth.service';
+
 describe('AppComponent', () => {
 
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);

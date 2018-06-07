@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {CUser} from './CUser';
 import {AuthService} from './services/auth.service';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {Observable} from 'rxjs';
@@ -26,13 +27,21 @@ export class CoffeeService {
     );
   }
 
-  public getUserAverageCoffees(from: Date, to: Date): Observable<Portion[]> {
+  public getUserCoffees(from: Date, to: Date): Observable<Portion[]> {
     return this.authService.user$.pipe(
       filter(user => !!user),
-      mergeMap(user => this.afs.collection(
+      mergeMap(user => this.afs.collection<Portion>(
         `users/${user.uid}/portions`,
           ref => ref.where('date', '>=', from).where('date', '<=', to)
       ).valueChanges())
     );
+  }
+
+  public getUserUnpaidCoffees(): Observable<number> {
+    return this.authService.user$.pipe(
+      filter(user => !!user),
+      mergeMap(user => this.afs.collection(`users`).doc(user.uid).valueChanges()),
+      map((data: CUser) => data ? data.totalPortions - data.paidPortions : 0)
+    )
   }
 }

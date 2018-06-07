@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {AngularFirestore} from 'angularfire2/firestore';
 import {endOfMonth, startOfMonth} from 'date-fns';
 import {Observable} from 'rxjs';
-import {filter, map, mergeMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+import {CoffeeService} from '../coffee.service';
 import {Portion} from '../portion';
 
 @Component({
@@ -15,13 +14,8 @@ export class MonthlyCoffeesComponent {
 
   public monthlyTotals$: Observable<number>;
 
-  constructor(afs: AngularFirestore, afAuth: AngularFireAuth) {
-    this.monthlyTotals$ = afAuth.authState.pipe(
-      filter(user => !!user),
-      mergeMap(user => afs.collection(`users`).doc(user.uid).collection('portions', ref => ref
-        .where('date', '>=', startOfMonth(new Date()))
-        .where('date', '<=', endOfMonth(new Date()))
-      ).valueChanges()),
+  constructor(private coffeeService: CoffeeService) {
+    this.monthlyTotals$ = coffeeService.getUserCoffees(startOfMonth(new Date()), endOfMonth(new Date())).pipe(
       map((data: Portion[]) => data.map(d => d.amount).reduce((a, b) => a + b, 0))
     );
   }

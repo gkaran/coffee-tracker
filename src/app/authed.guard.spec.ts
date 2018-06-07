@@ -4,7 +4,7 @@ import { AuthedGuard } from './authed.guard';
 import {AuthService} from './services/auth.service';
 import {Router} from '@angular/router';
 
-const routerSpy = jasmine.createSpyObj('Royter', ['navigate']);
+const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
 describe('AuthedGuard', () => {
 

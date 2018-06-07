@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {MatHeaderCellDef, MatHeaderRowDef, MatRowDef} from '@angular/material';
 
-import { LeaderboardComponent } from './leaderboard.component';
+import {LeaderboardComponent} from './leaderboard.component';
 
 describe('LeaderboardComponent', () => {
   let component: LeaderboardComponent;
@@ -8,9 +10,15 @@ describe('LeaderboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LeaderboardComponent ]
+      declarations: [
+        LeaderboardComponent,
+        MatHeaderCellDef,
+        MatHeaderRowDef,
+        MatRowDef
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

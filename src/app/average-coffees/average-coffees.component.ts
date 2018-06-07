@@ -30,7 +30,7 @@ export class AverageCoffeesComponent {
   public chartData$: Observable<{ data: any[], labels: any[] }>;
 
   constructor(private coffeeService: CoffeeService) {
-    this.chartData$ = coffeeService.getUserAverageCoffees(startOfMonth(new Date()), endOfMonth(new Date())).pipe(
+    this.chartData$ = coffeeService.getUserCoffees(startOfMonth(new Date()), endOfMonth(new Date())).pipe(
       map((data: Portion[]) => {
         const mappedData = data.map(dt => ({...dt, date: format(dt.date.toDate(), 'YYYY-MM-DD')}))
           .sort((a, b) => isBefore(parse(a.date), parse(b.date)) ? -1 : 1);
