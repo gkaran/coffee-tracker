@@ -8,10 +8,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class UpdateNameModalComponent implements OnInit {
 
+  public displayName: string;
+
   constructor(public dialogRef: MatDialogRef<UpdateNameModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    this.displayName = this.data.displayName;
   }
 
   onNoClick(): void {
