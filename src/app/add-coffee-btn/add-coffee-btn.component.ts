@@ -7,7 +7,7 @@ import {CoffeeService} from '../coffee.service';
 @Component({
   selector: 'app-add-coffee-btn',
   templateUrl: './add-coffee-btn.component.html',
-  styleUrls: ['./add-coffee-btn.component.css']
+  styleUrls: ['./add-coffee-btn.component.scss']
 })
 export class AddCoffeeBtnComponent {
 

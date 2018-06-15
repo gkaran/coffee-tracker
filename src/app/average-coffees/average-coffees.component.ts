@@ -8,13 +8,21 @@ import {CoffeeService} from '../coffee.service';
 @Component({
   selector: 'app-average-coffees',
   templateUrl: './average-coffees.component.html',
-  styleUrls: ['./average-coffees.component.css']
+  styleUrls: ['./average-coffees.component.scss']
 })
 export class AverageCoffeesComponent {
 
   public chartOptions: any = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 0,
+          beginAtZero: true
+        }
+      }]
+    }
   };
   public chartColors: Array<any> = [
     { // grey

@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {filter, mergeMap} from 'rxjs/operators';
+import {CoffeeService} from '../coffee.service';
+import {PayCoffeeModalComponent} from '../modals/pay-coffee-modal/pay-coffee-modal.component';
 
 @Component({
   selector: 'app-pay-coffee-btn',
   templateUrl: './pay-coffee-btn.component.html',
-  styleUrls: ['./pay-coffee-btn.component.css']
+  styleUrls: ['./pay-coffee-btn.component.scss']
 })
-export class PayCoffeeBtnComponent implements OnInit {
+export class PayCoffeeBtnComponent {
 
-  constructor() { }
+  constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private coffeeService: CoffeeService) { }
 
-  ngOnInit() {
+  openPayCoffeeModal() {
+    const dialogRef = this.dialog.open(PayCoffeeModalComponent, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().pipe(
+      filter(result => result !== undefined),
+      mergeMap(portions => this.coffeeService.addPayment(portions))
+    ).subscribe(
+      () => this.snackBar.open('Thank you for your payment', 'OK', {duration: 2000}),
+      () => this.snackBar.open('Something went wrong with your payment', 'OK', {duration: 2000})
+    );
   }
 
 }

@@ -8,7 +8,7 @@ import {Portion} from '../portion';
 @Component({
   selector: 'app-monthly-coffees',
   templateUrl: './monthly-coffees.component.html',
-  styleUrls: ['./monthly-coffees.component.css']
+  styleUrls: ['./monthly-coffees.component.scss']
 })
 export class MonthlyCoffeesComponent {
 
