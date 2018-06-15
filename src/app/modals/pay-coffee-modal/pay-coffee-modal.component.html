@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Show me the money</h1>
+<div mat-dialog-content>
+  <mat-form-field class="w-100">
+    <input type='number' placeholder="Portions" matInput [(ngModel)]="data.portions" (ngModelChange)='updateMoney($event)' />
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <input type='number' placeholder="Euros" step='0.1' matInput [(ngModel)]="data.money" (ngModelChange)='updatePortions($event)' />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.portions" cdkFocusInitial>Add</button>
+</div>
