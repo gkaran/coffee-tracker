@@ -6,7 +6,8 @@
   </mat-card-header>
   <mat-card-content class="dashboard-card-content">
     <canvas *ngIf='chartData$ | async as chartData; else loading'
-            baseChart height="100px"
+            baseChart
+            height="155"
             [data]="chartData.data"
             [legend]='false'
             [labels]="chartData.labels"
@@ -15,7 +16,7 @@
             [chartType]="'line'"></canvas>
   </mat-card-content>
   <mat-card-footer class='p-15 grey-50-bg border-top card-footer'>
-    <div>Average: 3 portions</div>
+    <div>Average: -- portions</div>
   </mat-card-footer>
 </mat-card>
 

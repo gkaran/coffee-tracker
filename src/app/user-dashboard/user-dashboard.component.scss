@@ -1,0 +1,30 @@
+.dashboard-container {
+  display: flex;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  flex-wrap: wrap;
+  flex: 0 0 70%;
+}
+
+%col {
+  margin-bottom: 20px;
+}
+
+.col-1-el {
+  @extend %col;
+  flex: 0 0 30%;
+}
+
+.col-3-el {
+  @extend %col;
+  flex: 0 0 100%;
+}
+
+.feed-wrapper {
+  flex: 0 0 30%;
+  padding: 2rem 2rem 2rem 0;
+}
