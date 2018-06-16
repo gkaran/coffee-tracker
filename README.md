@@ -1,4 +1,7 @@
-# CoffeeTracker
+# CoffeeTracker 
+
+[![CircleCI](https://circleci.com/gh/gkaran/coffee-tracker.svg?style=svg)](https://circleci.com/gh/gkaran/coffee-tracker)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/db1d6d314c1df61e844d/test_coverage)](https://codeclimate.com/github/gkaran/coffee-tracker/test_coverage)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 

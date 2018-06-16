@@ -1,16 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {CoffeeService} from '../coffee.service';
 
-import { UnpaidCoffeesComponent } from './unpaid-coffees.component';
+import {UnpaidCoffeesComponent} from './unpaid-coffees.component';
 
 describe('UnpaidCoffeesComponent', () => {
   let component: UnpaidCoffeesComponent;
   let fixture: ComponentFixture<UnpaidCoffeesComponent>;
 
+  const coffeeServiceSpy = jasmine.createSpyObj('CoffeeService', ['getUserUnpaidCoffees']);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UnpaidCoffeesComponent ]
+      declarations: [UnpaidCoffeesComponent],
+      providers: [
+        {provide: CoffeeService, useValue: coffeeServiceSpy}
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -22,6 +22,14 @@ import {UserDashboardComponent} from './user-dashboard/user-dashboard.component'
 import { MonthlyCoffeesComponent } from './monthly-coffees/monthly-coffees.component';
 import { AddCoffeeModalComponent } from './modals/add-coffee-modal/add-coffee-modal.component';
 import { UpdateNameModalComponent } from './modals/update-name-modal/update-name-modal.component';
+import { AppRoutingModule } from './/app-routing.module';
+import {LoginComponent} from './login/login.component';
+import {NonAuthedGuard} from './non-authed.guard';
+import {AuthedGuard} from './authed.guard';
+import {AuthService} from './services/auth.service';
+import { AddCoffeeBtnComponent } from './add-coffee-btn/add-coffee-btn.component';
+import { PayCoffeeBtnComponent } from './pay-coffee-btn/pay-coffee-btn.component';
+import {CoffeeService} from './coffee.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,10 @@ import { UpdateNameModalComponent } from './modals/update-name-modal/update-name
     NavbarComponent,
     MonthlyCoffeesComponent,
     AddCoffeeModalComponent,
-    UpdateNameModalComponent
+    UpdateNameModalComponent,
+    LoginComponent,
+    AddCoffeeBtnComponent,
+    PayCoffeeBtnComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +69,15 @@ import { UpdateNameModalComponent } from './modals/update-name-modal/update-name
     MatInputModule,
     MatSlideToggleModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    NonAuthedGuard,
+    AuthedGuard,
+    AuthService,
+    CoffeeService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddCoffeeModalComponent, UpdateNameModalComponent]
 })

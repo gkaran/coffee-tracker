@@ -46,10 +46,29 @@ jobs:
       - run:
           name: Run frontend tests
           command: |
-            npm test --code-coverage
-            ./tmp/cc-test-reports format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
+            yarn test --code-coverage --watch=false --no-progress
+            ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
+
+      - run:
+          name: Build app in production mode
+          command: |
+            yarn build --prod
 
       - run:
           name: Upload coverage results to Code Climate
           command: |
-            ./tmp/cc-test-reporter upload-coverate -i tmp/codeclimate.frontend.json
+            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
+
+      - run:
+          name: Skip deploying for Pull Requests and Fork builds
+          # Note, `|| true` on the end makes this step always exit 0
+          command: '[[
+              -v CIRCLE_PR_NUMBER
+              || "$CIRCLE_PROJECT_USERNAME" != "angular"
+              || "$CIRCLE_PROJECT_REPONAME" != "angular"
+          ]] && circleci step halt || true'
+
+      - run:
+          name: Deploy app to firebase
+          command: |
+            ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
