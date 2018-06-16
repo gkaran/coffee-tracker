@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule
+  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import {UnpaidCoffeesComponent} from './unpaid-coffees/unpaid-coffees.component'
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import { MonthlyCoffeesComponent } from './monthly-coffees/monthly-coffees.component';
 import { AddCoffeeModalComponent } from './modals/add-coffee-modal/add-coffee-modal.component';
+import { UpdateNameModalComponent } from './modals/update-name-modal/update-name-modal.component';
 import { AppRoutingModule } from './/app-routing.module';
 import {LoginComponent} from './login/login.component';
 import {NonAuthedGuard} from './non-authed.guard';
@@ -40,6 +41,7 @@ import {CoffeeService} from './coffee.service';
     NavbarComponent,
     MonthlyCoffeesComponent,
     AddCoffeeModalComponent,
+    UpdateNameModalComponent,
     LoginComponent,
     AddCoffeeBtnComponent,
     PayCoffeeBtnComponent
@@ -63,6 +65,8 @@ import {CoffeeService} from './coffee.service';
     MatProgressSpinnerModule,
     ChartsModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatSlideToggleModule,
     FormsModule,
     MatSnackBarModule,
@@ -75,6 +79,6 @@ import {CoffeeService} from './coffee.service';
     CoffeeService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddCoffeeModalComponent]
+  entryComponents: [AddCoffeeModalComponent, UpdateNameModalComponent]
 })
 export class AppModule {}
