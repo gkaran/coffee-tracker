@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {endOfMonth, format, isBefore, parse, startOfMonth} from 'date-fns';
+import {compareAsc, endOfMonth, format, isBefore, parse, startOfMonth} from 'date-fns';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Portion} from '../portion';
@@ -41,13 +41,13 @@ export class AverageCoffeesComponent {
     this.chartData$ = coffeeService.getUserCoffees(startOfMonth(new Date()), endOfMonth(new Date())).pipe(
       map((data: Portion[]) => {
         const mappedData = data.map(dt => ({...dt, date: format(dt.date.toDate(), 'YYYY-MM-DD')}))
-          .sort((a, b) => isBefore(parse(a.date), parse(b.date)) ? -1 : 1);
+          .sort((a, b) => compareAsc(parse(a.date), parse(b.date)));
         const labels = Array.from(new Set(mappedData.map(dd => dd.date)));
 
         const d = this.groupBy(mappedData, 'date');
         const orderedData = [];
         for (const date of labels) {
-          orderedData.push(d[date].map(i => i.totalPortions).reduce((a, b) => a + b, 0));
+          orderedData.push(d[date].map(i => i.amount).reduce((a, b) => a + b, 0));
         }
         return {
           data: orderedData,

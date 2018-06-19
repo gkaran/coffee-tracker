@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {distanceInWordsToNow} from 'date-fns';
-import {combineLatest, forkJoin, Observable} from 'rxjs';
+import {compareDesc} from 'date-fns';
+import {combineLatest, forkJoin, merge, Observable, of} from 'rxjs';
 import {map, mergeMap, take} from 'rxjs/operators';
 import {CoffeeService} from '../coffee.service';
 import {CUser} from '../CUser';
+import {FeedEntry} from '../feed-entry';
 import {Payment} from '../payment';
 import {Portion} from '../portion';
 
@@ -15,45 +16,56 @@ import {Portion} from '../portion';
 })
 export class LiveFeedComponent implements OnInit {
 
-  public feed$: Observable<Array<string[]>>;
+  public feed$: Observable<FeedEntry[]>;
 
   constructor(private coffeeService: CoffeeService, private afs: AngularFirestore) {
     this.feed$ = combineLatest(
-      coffeeService.getLastNPayments().pipe(
-        mergeMap((payments: Payment[]) => forkJoin(payments
-          .filter(payment => !!payment.date)
-          .map(payment => this.stringifyPayment(payment)))
+      merge(
+        of([]),
+        coffeeService.getLastNPayments(40).pipe(
+          mergeMap((payments: Payment[]) => forkJoin(payments
+            .filter(payment => !!payment.date)
+            .map(payment => this.mapPayment(payment)))
+          )
         )
       ),
 
-      coffeeService.getLastNCoffees().pipe(
-        mergeMap((portions: Portion[]) => forkJoin(portions
-          .filter(portion => !!portion.date)
-          .map(portion => this.stringifyPortion(portion)))
-        ),
+      merge(
+        of([]),
+        coffeeService.getLastNCoffees(40).pipe(
+          mergeMap((portions: Portion[]) => forkJoin(portions
+            .filter(portion => !!portion.date)
+            .map(portion => this.mapPortion(portion)))
+          ),
+        )
       )
-    ).pipe(([payments, portions]: [Array<string[]>, Array<string[]>]) => payments.concat(portions));
+    ).pipe(
+      map(([payments, portions]: [FeedEntry[], FeedEntry[]]) => payments
+        .concat(portions)
+        .sort((a, b) => compareDesc(a.date, b.date))
+        .slice(0, 40))
+    );
   }
 
   ngOnInit() {}
 
-  private stringifyPortion(portion: Portion): Observable<string[]> {
+  private mapPortion(portion: Portion): Observable<FeedEntry> {
     return this.afs.doc<CUser>(`users/${portion.user}`).valueChanges().pipe(
       take(1),
-      map((user: CUser) => [
-        `${user.name} made a ${portion.amount === 1 ? 'single' : 'double'} coffee`,
-        distanceInWordsToNow(portion.date.toDate(), {addSuffix: true})
-      ]),
+      map((user: CUser) => ({
+        text: `${user.name} made a ${portion.amount === 1 ? 'single' : 'double'} coffee`,
+        date: portion.date.toDate()
+      })),
     );
   }
 
-  private stringifyPayment(payment: Payment) {
+  private mapPayment(payment: Payment): Observable<FeedEntry> {
     return this.afs.doc<CUser>(`users/${payment.user}`).valueChanges().pipe(
       take(1),
-      map((user: CUser) => [
-        `${user.name} paid for ${payment.portions} portions`,
-        distanceInWordsToNow(payment.date.toDate(), {addSuffix: true})
-      ]),
+      map((user: CUser) => ({
+        text: `${user.name} paid for ${payment.portions} portions`,
+        date: payment.date.toDate()
+      })),
     );
   }
 }

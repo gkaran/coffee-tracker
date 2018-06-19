@@ -27,4 +27,41 @@
 .feed-wrapper {
   flex: 0 0 30%;
   padding: 2rem 2rem 2rem 0;
+  margin-bottom: 20px;
+
+  app-live-feed {
+    height: 100%;
+    display: block;
+    /deep/ mat-card {
+      height: 100%;
+    }
+  }
+}
+
+.maskot-wrapper {
+  align-items: center;
+  justify-content: center;
+}
+
+.maskot {
+  max-height: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .col-1-el, .col-3-el, .feed-wrapper, .cards-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .feed-wrapper {
+    padding: 0 2rem 2rem;
+  }
+
+  .cards-container {
+    padding-bottom: 0;
+  }
+
+  .dashboard-container {
+    flex-wrap: wrap;
+  }
 }

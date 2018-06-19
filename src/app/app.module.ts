@@ -33,6 +33,7 @@ import {PayCoffeeBtnComponent} from './pay-coffee-btn/pay-coffee-btn.component';
 import {CoffeeService} from './coffee.service';
 import {LiveFeedComponent} from './live-feed/live-feed.component';
 import {PayCoffeeModalComponent} from './modals/pay-coffee-modal/pay-coffee-modal.component';
+import { DateDistanceInWordsToNowPipe } from './date-distance-in-words-to-now.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {PayCoffeeModalComponent} from './modals/pay-coffee-modal/pay-coffee-moda
     AddCoffeeBtnComponent,
     PayCoffeeBtnComponent,
     LiveFeedComponent,
-    PayCoffeeModalComponent
+    PayCoffeeModalComponent,
+    DateDistanceInWordsToNowPipe
   ],
   imports: [
     BrowserModule,
