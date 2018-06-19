@@ -1,4 +1,4 @@
-<app-navbar [user]='authService.user$ | async' (logout)='logout()'></app-navbar>
+<app-navbar [user]='authService.cUser$ | async' (logout)='logout()'></app-navbar>
 
 <router-outlet></router-outlet>
 

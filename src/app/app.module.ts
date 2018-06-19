@@ -2,8 +2,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
-  MatProgressSpinnerModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
   MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
@@ -22,8 +21,8 @@ import {UnpaidCoffeesComponent} from './unpaid-coffees/unpaid-coffees.component'
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import {MonthlyCoffeesComponent} from './monthly-coffees/monthly-coffees.component';
 import {AddCoffeeModalComponent} from './modals/add-coffee-modal/add-coffee-modal.component';
-import {UpdateNameModalComponent } from './modals/update-name-modal/update-name-modal.component';
-import {AppRoutingModule} from './/app-routing.module';
+import {UpdateNameModalComponent} from './modals/update-name-modal/update-name-modal.component';
+import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './login/login.component';
 import {NonAuthedGuard} from './non-authed.guard';
 import {AuthedGuard} from './authed.guard';
@@ -33,7 +32,7 @@ import {PayCoffeeBtnComponent} from './pay-coffee-btn/pay-coffee-btn.component';
 import {CoffeeService} from './coffee.service';
 import {LiveFeedComponent} from './live-feed/live-feed.component';
 import {PayCoffeeModalComponent} from './modals/pay-coffee-modal/pay-coffee-modal.component';
-import { DateDistanceInWordsToNowPipe } from './date-distance-in-words-to-now.pipe';
+import {DateDistanceInWordsToNowPipe} from './date-distance-in-words-to-now.pipe';
 
 @NgModule({
   declarations: [

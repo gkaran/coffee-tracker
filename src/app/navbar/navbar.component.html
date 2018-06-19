@@ -2,7 +2,7 @@
   <span>☕ Tracker</span>
   <span class="example-fill-remaining-space"></span>
 
-  <span *ngIf='user'>{{user?.displayName}}</span>
+  <span *ngIf='user'>{{user?.name}}</span>
 
   <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf='user'>
     <mat-icon>more_vert</mat-icon>
