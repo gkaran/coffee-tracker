@@ -28,6 +28,14 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(new GoogleAuthProvider());
   }
 
+  public loginWithEmail(email: string, password: string): Promise<any> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  public register(email: string, password: string): Promise<any> {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
+
   public isAuthed(): boolean {
     return !!this.afAuth.auth.currentUser;
   }

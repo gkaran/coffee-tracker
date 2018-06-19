@@ -3,7 +3,8 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatGridListModule, MatIconModule, MatListModule, MatMenuModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule, MatFormFieldModule, MatInputModule
+  MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule, MatFormFieldModule, MatInputModule,
+  MatDividerModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -33,6 +34,7 @@ import {CoffeeService} from './coffee.service';
 import {LiveFeedComponent} from './live-feed/live-feed.component';
 import {PayCoffeeModalComponent} from './modals/pay-coffee-modal/pay-coffee-modal.component';
 import {DateDistanceInWordsToNowPipe} from './date-distance-in-words-to-now.pipe';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import {DateDistanceInWordsToNowPipe} from './date-distance-in-words-to-now.pipe
     PayCoffeeBtnComponent,
     LiveFeedComponent,
     PayCoffeeModalComponent,
-    DateDistanceInWordsToNowPipe
+    DateDistanceInWordsToNowPipe,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import {DateDistanceInWordsToNowPipe} from './date-distance-in-words-to-now.pipe
     MatSlideToggleModule,
     FormsModule,
     MatSnackBarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDividerModule
   ],
   providers: [
     NonAuthedGuard,

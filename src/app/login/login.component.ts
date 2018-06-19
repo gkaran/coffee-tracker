@@ -9,10 +9,19 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent {
 
+  public error: any;
+
   constructor(private authService: AuthService, private router: Router) {}
 
-  public login() {
+  public loginWithGoogle() {
     this.authService.loginWithGoogle().then(() => this.router.navigate(['dashboard']));
+  }
+
+  public loginWithEmail(event, email, password) {
+    event.preventDefault();
+    this.authService.loginWithEmail(email, password)
+      .then(() => this.router.navigate(['dashboard']))
+      .catch(error => this.error = error);
   }
 
 }
