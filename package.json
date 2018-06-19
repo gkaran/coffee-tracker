@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.0",
+    "@angular/cdk": "^6.1.0",
     "@angular/common": "^6.0.0",
     "@angular/compiler": "^6.0.0",
     "@angular/core": "^6.0.0",
@@ -28,8 +29,7 @@
     "firebase": "^5.0.4",
     "ng2-charts": "^1.6.0",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26",
-    "@angular/cdk": "^6.1.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.1",
@@ -39,6 +39,7 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "bootstrap": "^4.1.1",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
