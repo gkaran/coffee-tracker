@@ -3,6 +3,7 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import {filter, mergeMap} from 'rxjs/operators';
 import {CUser} from '../CUser';
 import {UpdateNameModalComponent} from '../modals/update-name-modal/update-name-modal.component';
+import {UserSettingsModalComponent} from '../modals/user-settings-modal/user-settings-modal.component';
 import {AuthService} from '../services/auth.service';
 
 @Component({
@@ -31,6 +32,21 @@ export class NavbarComponent {
     ).subscribe(
       () => this.snackBar.open('Wow, what a cool name!!', 'OK', {duration: 2000}),
       () => this.snackBar.open('Name changing did not work this time. Sorry!', 'OK', {duration: 2000})
+    );
+  }
+
+  openUserSettings() {
+    const dialogRef = this.dialog.open(UserSettingsModalComponent, {
+      width: '250px',
+      data: {...this.user}
+    });
+
+    dialogRef.afterClosed().pipe(
+      filter(data => data !== undefined),
+      mergeMap(data => this.authService.updateUserPreferences(data))
+    ).subscribe(
+      () => this.snackBar.open('Your settings have been saved', 'OK', {duration: 2000}),
+      () => this.snackBar.open('Something went wrong this time. Sorry!', 'OK', {duration: 2000})
     );
   }
 

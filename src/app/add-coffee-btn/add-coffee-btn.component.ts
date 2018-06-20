@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
-import {filter, mergeMap} from 'rxjs/operators';
-import {AddCoffeeModalComponent} from '../modals/add-coffee-modal/add-coffee-modal.component';
 import {MatDialog, MatSnackBar} from '@angular/material';
+import {filter, mergeMap} from 'rxjs/operators';
 import {CoffeeService} from '../coffee.service';
+import {CUser} from '../CUser';
+import {AddCoffeeModalComponent} from '../modals/add-coffee-modal/add-coffee-modal.component';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-add-coffee-btn',
@@ -11,12 +13,17 @@ import {CoffeeService} from '../coffee.service';
 })
 export class AddCoffeeBtnComponent {
 
-  constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private coffeeService: CoffeeService) {}
+  private user: CUser;
+
+  constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private coffeeService: CoffeeService,
+              private authService: AuthService) {
+    authService.cUser$.subscribe(user => this.user = user);
+  }
 
   openAddCoffeeModal() {
     const dialogRef = this.dialog.open(AddCoffeeModalComponent, {
       width: '250px',
-      data: {double: false}
+      data: {double: this.user ? !!this.user.preferDoubleCoffee : false}
     });
 
     dialogRef.afterClosed().pipe(

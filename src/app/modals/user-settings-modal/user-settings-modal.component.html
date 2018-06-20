@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>User Settings</h1>
+<div mat-dialog-content>
+  <mat-slide-toggle [(ngModel)]="data.preferDoubleCoffee">Prefer Double Coffee</mat-slide-toggle>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

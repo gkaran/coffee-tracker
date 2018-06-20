@@ -35,6 +35,7 @@ import {LiveFeedComponent} from './live-feed/live-feed.component';
 import {PayCoffeeModalComponent} from './modals/pay-coffee-modal/pay-coffee-modal.component';
 import {DateDistanceInWordsToNowPipe} from './date-distance-in-words-to-now.pipe';
 import { RegisterComponent } from './register/register.component';
+import { UserSettingsModalComponent } from './modals/user-settings-modal/user-settings-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { RegisterComponent } from './register/register.component';
     LiveFeedComponent,
     PayCoffeeModalComponent,
     DateDistanceInWordsToNowPipe,
-    RegisterComponent
+    RegisterComponent,
+    UserSettingsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { RegisterComponent } from './register/register.component';
   entryComponents: [
     AddCoffeeModalComponent,
     UpdateNameModalComponent,
-    PayCoffeeModalComponent
+    PayCoffeeModalComponent,
+    UserSettingsModalComponent
   ]
 })
 export class AppModule {}

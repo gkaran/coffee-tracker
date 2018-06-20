@@ -53,4 +53,14 @@ export class AuthService {
     );
   }
 
+  public updateUserPreferences(data: CUser) {
+    const {preferDoubleCoffee} = data;
+    return this.user$.pipe(
+      take(1),
+      filter(user => !!user),
+      map(user => user.uid),
+      mergeMap(uid => this.afs.doc(`users/${uid}`).update({preferDoubleCoffee}))
+    );
+  }
+
 }
