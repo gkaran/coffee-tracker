@@ -36,6 +36,7 @@ import {PayCoffeeModalComponent} from './modals/pay-coffee-modal/pay-coffee-moda
 import {DateDistanceInWordsToNowPipe} from './date-distance-in-words-to-now.pipe';
 import { RegisterComponent } from './register/register.component';
 import { UserSettingsModalComponent } from './modals/user-settings-modal/user-settings-modal.component';
+import { RoundPipe } from './pipes/round.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { UserSettingsModalComponent } from './modals/user-settings-modal/user-se
     PayCoffeeModalComponent,
     DateDistanceInWordsToNowPipe,
     RegisterComponent,
-    UserSettingsModalComponent
+    UserSettingsModalComponent,
+    RoundPipe
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@
   </mat-card-header>
   <mat-card-content class="dashboard-card-content">
     <div class='card-content-text'>
-      <span *ngIf='(portions$ | async) != null; else loadingLg'>{{portions$ | async}}</span>
+      <span *ngIf='(portions$ | async) != null; else loadingLg'>{{portions$ | async | round}}</span>
 
     </div>
     <div>PORTIONS</div>
