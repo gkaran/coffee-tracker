@@ -9,7 +9,6 @@ import {CoffeeService} from '../coffee.service';
 })
 export class UnpaidCoffeesComponent {
 
-  portionCost = 0.15;
   portions$: Observable<number>;
 
   constructor(private coffeeService: CoffeeService) {

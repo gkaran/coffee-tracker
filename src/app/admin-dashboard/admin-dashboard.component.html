@@ -1,0 +1,53 @@
+<div class='admin-dashboard'>
+
+  <div class="mat-elevation-z8 users-wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class='w-100'>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+        <td mat-footer-cell *matFooterCellDef> Total</td>
+      </ng-container>
+
+      <!-- Roles Column -->
+      <ng-container matColumnDef="roles">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-chip-list>
+            <mat-chip *ngFor='let role of element.roles'>{{role}}</mat-chip>
+          </mat-chip-list>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Total Portions Column -->
+      <ng-container matColumnDef="totalPortions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='text-right'> Portions</th>
+        <td mat-cell *matCellDef="let element" class='text-right'> {{element.totalPortions}}</td>
+        <td mat-footer-cell *matFooterCellDef class='text-right'>({{totalPortions | portionsCost | currency: 'EUR'}}) | {{totalPortions}}</td>
+      </ng-container>
+
+      <!-- Paid Portions Column -->
+      <ng-container matColumnDef="paidPortions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='text-right'> Paid</th>
+        <td mat-cell *matCellDef="let element" class='text-right'> {{element.paidPortions}}</td>
+        <td mat-footer-cell *matFooterCellDef class='text-right'>({{totalPaidPortions | portionsCost | currency: 'EUR'}}) | {{totalPaidPortions}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="due">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class='text-right'> Due</th>
+        <td mat-cell *matCellDef="let element" class='text-right'> {{element.totalPortions - element.paidPortions | portionsCost | currency:'EUR'}}</td>
+        <td mat-footer-cell *matFooterCellDef class='text-right'> {{totalDuePortions | portionsCost | currency:'EUR'}}</td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr mat-footer-row *matFooterRowDef="displayedColumns" class="example-first-footer-row"></tr>
+
+    </table>
+
+  </div>
+</div>

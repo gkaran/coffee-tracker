@@ -13,7 +13,7 @@
   </mat-card-content>
   <mat-card-footer class='p-15 grey-50-bg border-top card-footer'>
     <div>
-      <span *ngIf='(portions$ | async) != null; else loadingSm'>Due: {{(portions$ | async) * portionCost | currency:'EUR'}}</span>
+      <span *ngIf='(portions$ | async) != null; else loadingSm'>Due: {{portions$ | async | portionsCost | currency:'EUR'}}</span>
     </div>
   </mat-card-footer>
 </mat-card>

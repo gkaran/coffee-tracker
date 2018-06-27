@@ -3,4 +3,6 @@ export interface CUser {
   totalPortions: number;
   paidPortions: number;
   preferDoubleCoffee?: boolean;
+  roles?: string[];
+  [label: string]: any;
 }

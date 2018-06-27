@@ -47,3 +47,8 @@ mat-card-footer, .mat-dialog-content, .mat-dialog-actions {
   margin: 0 !important;
 }
 
+.text-right {
+  .mat-sort-header-container {
+    justify-content: flex-end;
+  }
+}

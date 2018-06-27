@@ -18,5 +18,11 @@
     <button mat-menu-item (click)='updateName()'>
       <span>Update Name</span>
     </button>
+    <button [routerLink]="['dashboard']" mat-menu-item *ngIf="user | hasRole:['admin']">
+      <span>User Board</span>
+    </button>
+    <button [routerLink]="['admin']" mat-menu-item *ngIf="user | hasRole:['admin']">
+      <span>Admin Board</span>
+    </button>
   </mat-menu>
 </mat-toolbar>
