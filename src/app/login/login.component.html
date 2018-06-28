@@ -1,34 +1,35 @@
-<mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <div *ngIf="error" class="alert alert-warning" role="alert">
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only">Error:</span>
-      {{error}}
-    </div>
+<div class="login-wrapper">
+  <div class="background"></div>
+  <img src="/assets/img/logo.svg" class="logo">
+  <mat-card class="login-card">
+    <mat-card-content>
+      <div *ngIf="error" class="alert alert-warning" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{error}}
+      </div>
 
-    <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
+      <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
 
-      <mat-form-field class="w-100">
-        <input type='email' placeholder="Email Address" matInput #email required='required' />
-      </mat-form-field>
+        <mat-form-field class="w-100">
+          <input type='email' placeholder="Email Address" matInput #email required='required' />
+        </mat-form-field>
 
-      <mat-form-field class="w-100">
-        <input type='password' placeholder="Password" matInput #password required='required' />
-      </mat-form-field>
+        <mat-form-field class="w-100">
+          <input type='password' placeholder="Password" matInput #password required='required' />
+        </mat-form-field>
 
-      <button class="w-100 mb-3" mat-raised-button color='primary' type="submit">Sign In</button>
-    </form>
+        <button class="mt-2 w-100 mb-4 sign-in" mat-button type="submit">Sign In</button>
+      </form>
 
-    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
 
-    <button class='mt-4 w-100 mb-4' mat-raised-button color="accent" (click)="loginWithGoogle()">Sign in with google</button>
+      <button class='mt-4 w-100 mb-4 google-sign-in' mat-button (click)="loginWithGoogle()">Sign in with google</button>
 
-    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
 
-    <button [routerLink]="'/register'" mat-button class='w-100 mt-4'>Register Now</button>
-  </mat-card-content>
-</mat-card>
-
+      <button [routerLink]="'/register'" mat-button class='w-100 mt-4'>Register Now</button>
+    </mat-card-content>
+  </mat-card>
+  <a href="https://github.com/sprocketc/coffee-tracker" class="github" target="_blank"><img src="/assets/img/github.svg"></a>
+</div>
