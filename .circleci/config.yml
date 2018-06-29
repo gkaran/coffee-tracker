@@ -123,7 +123,10 @@ workflows:
   version: 2
   lint-test-build-deploy:
     jobs:
-      - install_dependencies
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
       - cc-test-reporter
       - lint:
           requires:
