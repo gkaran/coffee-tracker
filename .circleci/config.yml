@@ -1,18 +1,50 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+var_1: &docker_image
+  circleci/node:8.11-browsers
+cache_key: &cache_key
+  v1-dependencies-{{ checksum "yarn.lock" }}
+cache_key_fallback: &cache_key_fallback
+  v1-dependencies-
+
+# Settings common to each job
+anchor_1: &job_defaults
+  working_directory: ~/repo
+  docker:
+    - image: *docker_image
+
+# After checkout, rebase on top of master.
+# Similar to travis behavior, but not quite the same.
+# See https://discuss.circleci.com/t/1662
+anchor_2: &post_checkout
+  post: git pull --ff-only origin "refs/pull/${CIRCLE_PULL_REQUEST//*pull\//}/merge"
+
+restore_repo: &restore_repo
+  restore_cache:
+    keys:
+      - v1-repo-{{ .Branch }}-{{ .Revision }}
+      - v1-repo-{{ .Branch }}
+      - v1-repo
+
+restore_node_modules: &restore_node_modules
+  restore_cache:
+    keys:
+      - *cache_key
+      - *cache_key_fallback
+
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/node:8.11-browsers
-
-    working_directory: ~/repo
-
+  checkout_code:
+    <<: *job_defaults
     steps:
+      - *restore_repo
       - checkout
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - node_modules
 
+  cc-test-reporter:
+    <<: *job_defaults
+    steps:
       - attach_workspace:
           at: ~/repo/tmp
       - run:
@@ -26,49 +58,93 @@ jobs:
           paths:
             - cc-test-reporter
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
+  install_dependencies:
+    <<: *job_defaults
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn install --frozen-lockfile --non-interactive
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: *cache_key
 
-      # run tests!
-      - run: yarn lint
+  lint:
+    <<: *job_defaults
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn run lint
 
+  test:
+    <<: *job_defaults
+    steps:
+      - *restore_repo
+      - *restore_node_modules
       - run:
           name: Run frontend tests
           command: |
             yarn test --code-coverage --watch=false --no-progress
             ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
+      - persist_to_workspace:
+          root: coverage
+          paths:
+            - *
 
-      - run:
-          name: Build app in production mode
-          command: |
-            yarn build --prod
+  build:
+    <<: *job_defaults
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn build --prod
+      - persist_to_workspace:
+          root: dist
+          paths:
+            - *
 
-      - run:
-          name: Upload coverage results to Code Climate
-          command: |
-            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
+  upload_coverage_report:
+    <<: *job_defaults
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
 
-      - run:
-          name: Skip deploying for Pull Requests and Fork builds
-          # Note, `|| true` on the end makes this step always exit 0
-          command: '[[
-              -v CIRCLE_PR_NUMBER
-              || "$CIRCLE_PROJECT_USERNAME" != "angular"
-              || "$CIRCLE_PROJECT_REPONAME" != "angular"
-          ]] && circleci step halt || true'
+  firebase_deploy:
+    <<: *job_defaults
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - restore_cache:
+          key: *cache_key
+      - deploy: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
-      - run:
-          name: Deploy app to firebase
-          command: |
-            ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
+workflows:
+  version: 2
+  lint-test-build-deploy:
+    jobs:
+      - install_dependencies
+      - cc-test-reporter
+      - lint:
+          requires:
+            - install_dependencies
+      - test:
+          requires:
+            - install_dependencies
+            - cc-test-reporter
+      - build:
+          requires:
+            - install_dependencies
+      - upload_coverage_report:
+          requires:
+            - test
+            - build
+            - lint
+      - firebase_deploy:
+          requires:
+            - build
+            - lint
+            - test
+          filters:
+            branches:
+              only: master
