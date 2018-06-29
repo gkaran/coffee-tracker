@@ -73,6 +73,8 @@ jobs:
     <<: *job_defaults
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/repo/tmp
       - *restore_repo
       - *restore_node_modules
       - run:
@@ -101,6 +103,8 @@ jobs:
     <<: *job_defaults
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/repo/tmp
       - *restore_repo
       - *restore_node_modules
       - run: ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
@@ -109,6 +113,8 @@ jobs:
     <<: *job_defaults
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/repo/tmp
       - *restore_repo
       - *restore_node_modules
       - restore_cache:
