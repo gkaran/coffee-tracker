@@ -12,7 +12,7 @@ export class HasRolePipe implements PipeTransform {
     }
 
     const userRoles = (user.roles || []);
-    for(const role of roles) {
+    for (const role of roles) {
       if (matchAny) {
         if (userRoles.includes(role)) {
           return true;

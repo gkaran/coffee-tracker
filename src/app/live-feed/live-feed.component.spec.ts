@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LiveFeedComponent } from './live-feed.component';
 
-describe('LiveFeedComponent', () => {
+xdescribe('LiveFeedComponent', () => {
   let component: LiveFeedComponent;
   let fixture: ComponentFixture<LiveFeedComponent>;
 
