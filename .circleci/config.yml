@@ -137,6 +137,7 @@ workflows:
             - cc-test-reporter
       - build:
           requires:
+            - checkout_code
             - install_dependencies
       - upload_coverage_report:
           requires:
