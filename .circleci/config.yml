@@ -87,9 +87,9 @@ jobs:
             yarn test --code-coverage --watch=false --no-progress
             ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
       - persist_to_workspace:
-          root: coverage
+          root: ~/repo
           paths:
-            - /*
+            - coverage/*
 
   build:
     <<: *job_defaults
@@ -98,9 +98,9 @@ jobs:
       - *restore_node_modules
       - run: yarn build --prod
       - persist_to_workspace:
-          root: dist
+          root: ~/repo
           paths:
-            - *
+            - dist/*
 
   upload_coverage_report:
     <<: *job_defaults
