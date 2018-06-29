@@ -108,6 +108,10 @@ jobs:
       - *restore_repo
       - *restore_node_modules
       - run: ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - codeclimate.frontend.json
 
   firebase_deploy:
     <<: *job_defaults
