@@ -37,7 +37,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/repo/tmp
+          at: ~/repo
       - run:
           name: Download cc-test-reporter
           command: |
@@ -45,9 +45,9 @@ jobs:
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
             chmod +x ./tmp/cc-test-reporter
       - persist_to_workspace:
-          root: tmp
+          root: ~/repox
           paths:
-            - cc-test-reporter
+            - ~/repo/cc-test-reporter
 
   install_dependencies:
     <<: *job_defaults
