@@ -82,6 +82,8 @@ jobs:
           command: |
             yarn test --code-coverage --watch=false --no-progress
             ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/lcov.info
+      - store_test_results:
+          path: coverage
       - persist_to_workspace:
           root: ~/repo
           paths:
