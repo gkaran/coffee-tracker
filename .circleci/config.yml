@@ -123,7 +123,8 @@ jobs:
       - *restore_node_modules
       - restore_cache:
           key: *cache_key
-      - deploy: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+      - deploy:
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 
 workflows:
