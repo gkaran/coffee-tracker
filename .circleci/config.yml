@@ -89,7 +89,7 @@ jobs:
       - persist_to_workspace:
           root: coverage
           paths:
-            - *
+            - /*
 
   build:
     <<: *job_defaults
