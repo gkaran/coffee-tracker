@@ -32,19 +32,10 @@ restore_node_modules: &restore_node_modules
 
 version: 2
 jobs:
-  checkout_code:
-    <<: *job_defaults
-    steps:
-      - *restore_repo
-      - checkout
-      - save_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - node_modules
-
   cc-test-reporter:
     <<: *job_defaults
     steps:
+      - checkout
       - attach_workspace:
           at: ~/repo/tmp
       - run:
@@ -61,6 +52,7 @@ jobs:
   install_dependencies:
     <<: *job_defaults
     steps:
+      - checkout
       - *restore_repo
       - *restore_node_modules
       - run: yarn install --frozen-lockfile --non-interactive
@@ -72,6 +64,7 @@ jobs:
   lint:
     <<: *job_defaults
     steps:
+      - checkout
       - *restore_repo
       - *restore_node_modules
       - run: yarn run lint
@@ -79,6 +72,7 @@ jobs:
   test:
     <<: *job_defaults
     steps:
+      - checkout
       - *restore_repo
       - *restore_node_modules
       - run:
@@ -94,6 +88,7 @@ jobs:
   build:
     <<: *job_defaults
     steps:
+      - checkout
       - *restore_repo
       - *restore_node_modules
       - run: yarn build --prod
@@ -105,6 +100,7 @@ jobs:
   upload_coverage_report:
     <<: *job_defaults
     steps:
+      - checkout
       - *restore_repo
       - *restore_node_modules
       - run: ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.frontend.json
@@ -112,6 +108,7 @@ jobs:
   firebase_deploy:
     <<: *job_defaults
     steps:
+      - checkout
       - *restore_repo
       - *restore_node_modules
       - restore_cache:
@@ -123,10 +120,7 @@ workflows:
   version: 2
   lint-test-build-deploy:
     jobs:
-      - checkout_code
-      - install_dependencies:
-          requires:
-            - checkout_code
+      - install_dependencies
       - cc-test-reporter
       - lint:
           requires:
@@ -137,7 +131,6 @@ workflows:
             - cc-test-reporter
       - build:
           requires:
-            - checkout_code
             - install_dependencies
       - upload_coverage_report:
           requires:
