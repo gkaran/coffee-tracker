@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, MatSortable} from '@angular/material';
 import {CUser} from '../CUser';
 import {UsersService} from '../services/users.service';
 
@@ -29,6 +29,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sort.sort(<MatSortable>({id: 'due', start: 'desc'}));
     this.dataSource.sort = this.sort;
   }
 

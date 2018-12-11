@@ -5,7 +5,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content class="dashboard-card-content">
-    <div class='card-content-text' [ngClass]="{'text-danger': (portions$ | async) > 34, 'text-warning': (portions$ | async) > 20}">
+    <div class='card-content-text' [ngClass]="{'text-danger': (portions$ | async) > 0, 'text-warning': (portions$ | async) > -4}">
       <span *ngIf='(portions$ | async) != null; else loadingLg'>{{portions$ | async | round}}</span>
 
     </div>

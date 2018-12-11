@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CoffeeService} from '../coffee.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -11,7 +12,7 @@ export class UserDashboardComponent implements OnInit {
 
   public portions$: Observable<number>;
 
-  constructor(private coffeeService: CoffeeService) { }
+  constructor(private coffeeService: CoffeeService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.portions$ = this.coffeeService.getUserUnpaidCoffees();
