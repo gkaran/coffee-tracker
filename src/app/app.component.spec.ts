@@ -17,20 +17,12 @@ describe('AppComponent', () => {
     @Input() user: User;
   }
 
-  @Component({selector: 'app-add-coffee-btn', template: ''})
-  class AddCoffeeStubComponent {}
-
-  @Component({selector: 'app-pay-coffee-btn', template: ''})
-  class PayCoffeeStubComponent {}
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [
         AppComponent,
-        NavbarStubComponent,
-        AddCoffeeStubComponent,
-        PayCoffeeStubComponent
+        NavbarStubComponent
       ],
       providers: [
         {provide: Router, useValue: routerSpy},
