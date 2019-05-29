@@ -41,6 +41,7 @@ import { RoundPipe } from './pipes/round.pipe';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PortionsCostPipe } from './pipes/portions-cost.pipe';
 import { HasRolePipe } from './pipes/has-role.pipe';
+import { PortionsPipe } from './pipes/portions.pipe';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { HasRolePipe } from './pipes/has-role.pipe';
     RoundPipe,
     AdminDashboardComponent,
     PortionsCostPipe,
-    HasRolePipe
+    HasRolePipe,
+    PortionsPipe
   ],
   imports: [
     BrowserModule,

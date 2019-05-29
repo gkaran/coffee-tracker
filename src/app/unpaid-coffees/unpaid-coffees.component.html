@@ -5,15 +5,15 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content class="dashboard-card-content">
-    <div class='card-content-text' [ngClass]="{'text-danger': (portions$ | async) > 0, 'text-warning': (portions$ | async) > -4}">
-      <span *ngIf='(portions$ | async) != null; else loadingLg'>{{portions$ | async | round}}</span>
+    <div class='card-content-text' [ngClass]="{'text-danger': (due$ | async) > 0, 'text-warning': (due$ | async) > -0.5}">
+      <span *ngIf='(due$ | async) != null; else loadingLg'>{{due$ | async | portions | async | round:0}}</span>
 
     </div>
     <div>PORTIONS</div>
   </mat-card-content>
   <mat-card-footer class='p-15 grey-50-bg border-top card-footer'>
     <div>
-      <span *ngIf='(portions$ | async) != null; else loadingSm'>Due: {{portions$ | async | portionsCost | currency:'EUR'}}</span>
+      <span *ngIf='(due$ | async) != null; else loadingSm'>Due: {{due$ | async | currency:'EUR'}}</span>
     </div>
   </mat-card-footer>
 </mat-card>

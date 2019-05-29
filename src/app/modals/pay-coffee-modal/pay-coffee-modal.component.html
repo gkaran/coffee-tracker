@@ -1,13 +1,10 @@
 <h1 mat-dialog-title>Show me the money</h1>
-<div mat-dialog-content>
+<div mat-dialog-content class='text-center'>
+  <img src='assets/img/money.png' alt='money spinner' />
   <mat-form-field class="w-100">
-    <input type='number' placeholder="Portions" matInput [(ngModel)]="data.portions" (ngModelChange)='updateMoney($event)' />
-  </mat-form-field>
-
-  <mat-form-field class="w-100">
-    <input type='number' placeholder="Euros" step='0.1' matInput [(ngModel)]="data.money" (ngModelChange)='updatePortions($event)' />
+    <input type='number' name='money' placeholder="Euros" step='0.1' matInput [(ngModel)]="data.money" />
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data.portions" cdkFocusInitial>Add</button>
+  <button mat-button class="w-100" [mat-dialog-close]="data.money" cdkFocusInitial>Add</button>
 </div>

@@ -8,7 +8,7 @@ xdescribe('UnpaidCoffeesComponent', () => {
   let component: UnpaidCoffeesComponent;
   let fixture: ComponentFixture<UnpaidCoffeesComponent>;
 
-  const coffeeServiceSpy = jasmine.createSpyObj('CoffeeService', ['getUserUnpaidCoffees']);
+  const coffeeServiceSpy = jasmine.createSpyObj('CoffeeService', ['getUserDue']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

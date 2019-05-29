@@ -14,17 +14,29 @@ export class AdminDashboardComponent implements OnInit {
   dataSource: MatTableDataSource<CUser> = new MatTableDataSource([]);
 
   totalPortions = 0;
+  totalPortionsCost = 0;
   totalPaidPortions = 0;
+  totalPayments = 0;
   totalDuePortions = 0;
+  totalDuePortionsCost = 0;
 
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UsersService) {
     this.userService.getAllUsers().subscribe(users => {
       this.totalPortions = users.map(user => user.totalPortions || 0).reduce((a, b) => a + b, 0);
+      this.totalPortionsCost = users.map(user => user.totalPortionsCost || 0).reduce((a, b) => a + b, 0);
       this.totalPaidPortions = users.map(user => user.paidPortions || 0).reduce((a, b) => a + b, 0);
+      this.totalPayments = users.map(user => user.totalPayments || 0).reduce((a, b) => a + b, 0);
       this.totalDuePortions = this.totalPortions - this.totalPaidPortions;
-      this.dataSource.data = users.map(user => ({...user, due: user.totalPortions - user.paidPortions}));
+      this.totalDuePortionsCost = this.totalPortionsCost - this.totalPayments;
+      this.dataSource.data = users
+        .filter(user => user.name && !user.inactive && (user.totalPortions - user.paidPortions) !== 0)
+        .map(user => ({
+          ...user,
+          due: user.totalPortions - user.paidPortions,
+          dueCost: user.totalPortionsCost - user.totalPayments
+        }));
     });
   }
 

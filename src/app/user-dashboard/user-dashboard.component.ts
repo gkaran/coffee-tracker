@@ -10,12 +10,12 @@ import {AuthService} from '../services/auth.service';
 })
 export class UserDashboardComponent implements OnInit {
 
-  public portions$: Observable<number>;
+  public due$: Observable<number>;
 
   constructor(private coffeeService: CoffeeService, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.portions$ = this.coffeeService.getUserUnpaidCoffees();
+    this.due$ = this.coffeeService.getUserDue();
   }
 
 }

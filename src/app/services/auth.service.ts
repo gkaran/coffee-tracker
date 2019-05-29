@@ -17,6 +17,7 @@ export class AuthService {
   public cUser$: Observable<CUser>;
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+    window['afs'] = afs;
     this.user$ = afAuth.user;
     this.cUser$ = this.user$.pipe(
       filter(user => !!user),

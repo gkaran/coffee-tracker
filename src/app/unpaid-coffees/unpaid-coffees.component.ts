@@ -9,10 +9,10 @@ import {CoffeeService} from '../coffee.service';
 })
 export class UnpaidCoffeesComponent {
 
-  portions$: Observable<number>;
+  due$: Observable<number>;
 
   constructor(private coffeeService: CoffeeService) {
-    this.portions$ = coffeeService.getUserUnpaidCoffees();
+    this.due$ = coffeeService.getUserDue();
   }
 
 }

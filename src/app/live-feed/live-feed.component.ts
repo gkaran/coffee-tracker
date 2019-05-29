@@ -53,7 +53,7 @@ export class LiveFeedComponent implements OnInit {
     return this.afs.doc<CUser>(`users/${portion.user}`).valueChanges().pipe(
       take(1),
       map((user: CUser) => ({
-        text: `${user.name} made a ${portion.amount === 1 ? 'single' : 'double'} coffee`,
+        text: `☕ ${user.name} made a ${portion.amount === 1 ? 'single' : 'double'} coffee`,
         date: portion.date.toDate()
       })),
     );
@@ -63,7 +63,7 @@ export class LiveFeedComponent implements OnInit {
     return this.afs.doc<CUser>(`users/${payment.user}`).valueChanges().pipe(
       take(1),
       map((user: CUser) => ({
-        text: `${user.name} paid for ${payment.portions} portions`,
+        text: `💶 ${user.name} made a payment of ${payment.cost.toFixed(2)}€`,
         date: payment.date.toDate()
       })),
     );

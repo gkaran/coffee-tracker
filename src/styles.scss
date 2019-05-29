@@ -35,8 +35,12 @@ mat-card, .mat-dialog-container {
 
 mat-card-header, .mat-dialog-title {
   padding: 24px 24px 0 24px;
-  background-color: #3f51b5;
+  background-color: #752d2d;
   color: white;
+}
+
+.mat-toolbar.mat-primary, .mat-fab.mat-primary {
+  background-color: #752d2d;
 }
 
 mat-card-content, .mat-dialog-content, .mat-dialog-actions {

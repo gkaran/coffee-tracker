@@ -21,7 +21,7 @@ export class PayCoffeeBtnComponent {
 
     dialogRef.afterClosed().pipe(
       filter(result => result !== undefined),
-      mergeMap(portions => this.coffeeService.addPayment(portions))
+      mergeMap(money => this.coffeeService.addPayment(money))
     ).subscribe(
       () => this.snackBar.open('Thank you for your payment', 'OK', {duration: 2000}),
       () => this.snackBar.open('Something went wrong with your payment', 'OK', {duration: 2000})

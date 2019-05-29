@@ -10,7 +10,7 @@ describe('UserDashboardComponent', () => {
   let component: UserDashboardComponent;
   let fixture: ComponentFixture<UserDashboardComponent>;
 
-  const coffeeServiceSpy = jasmine.createSpyObj('CoffeeService', ['getUserUnpaidCoffees']);
+  const coffeeServiceSpy = jasmine.createSpyObj('CoffeeService', ['getUserDue']);
   const authServiceSpy = jasmine.createSpyObj('AuthService', ['logout']);
 
   @Component({selector: 'app-add-coffee-btn', template: ''})
@@ -36,7 +36,7 @@ describe('UserDashboardComponent', () => {
   }));
 
   beforeEach(() => {
-    coffeeServiceSpy.getUserUnpaidCoffees.and.returnValue(asyncData(10));
+    coffeeServiceSpy.getUserDue.and.returnValue(asyncData(10));
     fixture = TestBed.createComponent(UserDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -5,7 +5,7 @@
       <app-unpaid-coffees></app-unpaid-coffees>
     </div>
     <div class='col-1-el d-none d-md-flex maskot-wrapper'>
-      <img class='img-fluid maskot' [src]="(portions$ | async) > 0 ? 'assets/img/maskot-on-drugs.png' : 'assets/img/maskot.png'"/>
+      <img class='img-fluid maskot' [src]="(due$ | async) > 0 ? 'assets/img/maskot-on-drugs.png' : 'assets/img/maskot.png'"/>
     </div>
     <div class='col-1-el'>
       <app-monthly-coffees></app-monthly-coffees>
