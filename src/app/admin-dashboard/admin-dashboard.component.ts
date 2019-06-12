@@ -10,7 +10,7 @@ import {UsersService} from '../services/users.service';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  displayedColumns = ['name', 'roles', 'totalPortions', 'paidPortions', 'due'];
+  displayedColumns = ['name', 'roles', 'totalPortions', 'paidPortions', 'dueCost'];
   dataSource: MatTableDataSource<CUser> = new MatTableDataSource([]);
 
   totalPortions = 0;
@@ -41,7 +41,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sort.sort(<MatSortable>({id: 'due', start: 'desc'}));
+    this.sort.sort(<MatSortable>({id: 'dueCost', start: 'desc'}));
     this.dataSource.sort = this.sort;
   }
 
