@@ -18,32 +18,41 @@
 
 .logo {
   width: 360px;
+  max-width: 90%;
   height: auto;
-  margin-top: 70px;
+  margin-top: 6vh;
   padding: 0 30px;
+  margin-bottom: 0.3rem;
   opacity: .8;
 
   @media screen and (max-width: 768px) {
-    padding: 0 60px;
+    padding: 0 80px;
     margin-top: 0;
   }
 }
 
+h1 {
+  color: rgba(255, 255, 255, .8);
+  position: relative;
+  margin-bottom: 0.8rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.sepatator {
+  width: 250px;
+  border-top: 1px solid rgba(255, 255, 255, .8);
+  position: relative;
+}
+
 .login-card {
   width: 360px;
+  max-width: 90%;
   margin: 0 auto;
   text-align: center;
   background-color: rgba(255, 255, 255, .8);
-}
-
-.google-sign-in {
-  background: #882929;
-  color: #fff;
-}
-
-.sign-in {
-  background: #264c77;
-  color: #fff;
 }
 
 .github {

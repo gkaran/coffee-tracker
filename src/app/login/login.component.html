@@ -1,6 +1,8 @@
 <div class="login-wrapper">
   <div class="background"></div>
   <img src="/assets/img/logo.svg" class="logo">
+  <hr class="sepatator">
+  <h1>COFFEE TRACKER</h1>
   <mat-card class="login-card">
     <mat-card-content>
       <div *ngIf="error" class="alert alert-warning" role="alert">
@@ -19,12 +21,12 @@
           <input type='password' placeholder="Password" matInput #password required='required' />
         </mat-form-field>
 
-        <button class="mt-2 w-100 mb-4 sign-in" mat-button type="submit">Sign In</button>
+        <button class="mt-2 w-100 mb-4" mat-flat-button type="submit">Sign In</button>
       </form>
 
       <mat-divider></mat-divider>
 
-      <button class='mt-4 w-100 mb-4 google-sign-in' mat-button (click)="loginWithGoogle()">Sign in with google</button>
+      <button class="mt-4 w-100 mb-4" mat-flat-button color="accent" (click)="loginWithGoogle()">Sign in with google</button>
 
       <mat-divider></mat-divider>
 
